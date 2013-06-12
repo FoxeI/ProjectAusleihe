@@ -64,4 +64,9 @@ public class DataBase {
             e.printStackTrace();
         }
     }
+    
+    public ResultSet executeQuery(String query) throws SQLException{
+        return statement.executeQuery(query);
+    }
+    
 }

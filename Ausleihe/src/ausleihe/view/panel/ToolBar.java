@@ -1,5 +1,8 @@
 package ausleihe.view.panel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -10,7 +13,7 @@ public class ToolBar extends JPanel{
 
     private Controller controller;
     
-    public ToolBar(Controller controler){
+    public ToolBar(final Controller controler){
         super();
         this.controller = controler;
         
@@ -20,6 +23,15 @@ public class ToolBar extends JPanel{
         add(new JButton("Ausleihe"));
         add(new JButton("Mitarbeiter"));
         
-        
+        JButton test = new JButton("Test :D");
+        test.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+                controler.getTable("KUNDE");
+            }
+        });
+        add(test);
     }
 }
