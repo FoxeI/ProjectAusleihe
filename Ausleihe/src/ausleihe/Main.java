@@ -4,34 +4,64 @@ import java.sql.*;
 
 public class Main {
 
+    private Connection connection;
+    private Statement statement;
+    private ResultSet result;
+    
+    
+    public Main(){
+        connect("Foxel", "123");
+        disconnect();
+    }
+    
+    public void connect(String user, String password){   
+        try {
+            // Load Driver
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            System.out.println("Driver loaded.");
+        } catch (ClassNotFoundException e1) {
+            System.err.println("Driver failed to load!");
+            e1.printStackTrace();
+            return;
+        }
+            
+        try {
+            // Connect to Server
+            connection = DriverManager.getConnection("jdbc:jtds:sqlserver://localhost/ProjectAusleihe",user,password);
+            System.out.println("Connected.");
+        } catch (SQLException e2) {
+            System.err.println("Connection failed ...");
+            e2.printStackTrace();
+            return;
+        }
+            
+        try {
+            // Create Statement
+            statement = connection.createStatement();
+        } catch (SQLException e3) {
+            System.out.println("Statement creation failed!");
+        }
+    }
+    
+    public void disconnect(){
+        try {
+            if (statement != null)
+                statement.close();
+            
+            if (connection != null)
+                connection.close();
+            
+            System.out.println("Disconnected.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args
      */
-	public static void main(String[] args) throws SQLException {
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try{
-			//Ich hasse euch alle, gez. Keks
-			Class.forName("net.sourceforge.jtds.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:jtds:sqlserver://127.0.0.1/ProjectAusleihe","","");
-			stmt = con.createStatement( ) ;
-			rs = stmt.executeQuery("Select * From adressen;");
-			while(rs.next( )){
-				System.out.println(rs.getString("Nachname") + rs.getString("Vorname"));
-			}
-		} catch ( Exception e ) {
-			System.out.println("fehler"); 
-			e.printStackTrace();
-		} finally {
-			if (rs != null) rs.close ( ) ;
-			if (stmt != null) stmt.close ( ) ;
-			if (con != null) con.close ( );
-			System.out.println("Fertig");
-			
-		}
-		
-		
+	public static void main(String[] args){ 
+		new Main();
 	}	
 
 }
