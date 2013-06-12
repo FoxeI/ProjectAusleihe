@@ -6,14 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import ausleihe.controller.Controller;
+
 public class DataBase {
+    private Controller controller;
+    
     private Connection connection;
     private Statement statement;
     private ResultSet result;
     
     
-    public DataBase(){
-
+    public DataBase(Controller controller){
+        this.controller = controller;
     }
     
     public void connect(String user, String password){   
