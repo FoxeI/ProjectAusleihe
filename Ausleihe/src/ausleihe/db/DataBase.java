@@ -20,7 +20,7 @@ public class DataBase {
         this.controller = controller;
     }
     
-    public void connect(String user, String password){   
+    public boolean connect(String user, String password){   
         try {
             // Load Driver
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -28,7 +28,7 @@ public class DataBase {
         } catch (ClassNotFoundException e1) {
             System.err.println("Driver failed to load!");
             e1.printStackTrace();
-            return;
+            return false;
         }
             
         try {
@@ -38,7 +38,7 @@ public class DataBase {
         } catch (SQLException e2) {
             System.err.println("Connection failed ...");
             e2.printStackTrace();
-            return;
+            return false;
         }
             
         try {
@@ -46,7 +46,9 @@ public class DataBase {
             statement = connection.createStatement();
         } catch (SQLException e3) {
             System.out.println("Statement creation failed!");
+            return false;
         }
+        return true;
     }
     
     public void disconnect(){

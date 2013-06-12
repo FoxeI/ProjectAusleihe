@@ -1,4 +1,4 @@
-package ausleihe.view;
+package ausleihe.view.panel;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -35,7 +35,11 @@ public class Login extends JPanel{
             
             @Override
             public void actionPerformed(ActionEvent arg0) { 
-                controller.connect(ta_user.getText(), ta_pasw.getText());
+                if(controller.connect(ta_user.getText(), ta_pasw.getText())){
+                    // connected
+                } else {
+                    // connection failed
+                }
             }
         });
         

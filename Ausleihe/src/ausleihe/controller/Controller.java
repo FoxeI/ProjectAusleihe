@@ -12,7 +12,7 @@ public class Controller {
         view = new View(this);
     }
     
-    public void connect(String username, String password){
-        database.connect(username, password);
+    public boolean connect(String username, String password){
+        return database.connect(username, password);
     }
 }

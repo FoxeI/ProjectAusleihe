@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import ausleihe.controller.Controller;
+import ausleihe.view.panel.Login;
 
 public class View extends JFrame{
     private static final long serialVersionUID = 1L;
