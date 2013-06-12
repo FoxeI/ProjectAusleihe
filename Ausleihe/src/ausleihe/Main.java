@@ -1,6 +1,6 @@
 package ausleihe;
 
-import java.sql.*;
+import ausleihe.db.DataBase;
 
 public class Main {
   
