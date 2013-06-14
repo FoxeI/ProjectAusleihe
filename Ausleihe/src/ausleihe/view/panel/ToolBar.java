@@ -17,21 +17,32 @@ public class ToolBar extends JPanel{
         super();
         this.controller = controler;
         
-        add(new JButton("Computer"));
-        add(new JButton("Kunde"));
-        add(new JButton("Lizenz"));
-        add(new JButton("Ausleihe"));
-        add(new JButton("Mitarbeiter"));
-        
-        JButton test = new JButton("Test :D");
-        test.addActionListener(new ActionListener() {
+        ActionListener al = new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-               
-                controler.getTable("KUNDE");
+                controler.loadTable(e.getActionCommand());
             }
-        });
-        add(test);
+        };
+        
+        
+
+        JButton computer = new JButton("COMPUTER");
+        JButton lizenz = new JButton("LIZENZ");
+        JButton ausleihe = new JButton("AUSLEIHE");
+        JButton mitarbeiter = new JButton("MITARBEITER");
+        JButton kunde = new JButton("KUNDE");
+        
+        computer.addActionListener(al);
+        lizenz.addActionListener(al);
+        ausleihe.addActionListener(al);
+        mitarbeiter.addActionListener(al);
+        kunde.addActionListener(al);
+
+        add(computer);
+        add(lizenz);
+        add(ausleihe);
+        add(mitarbeiter);
+        add(kunde);
     }
 }

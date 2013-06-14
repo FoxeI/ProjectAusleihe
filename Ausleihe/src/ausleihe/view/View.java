@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableColumnModelListener;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -39,7 +40,7 @@ public class View extends JFrame{
         login_tool_Pannel.setLayout(new FlowLayout());
         
         login_tool_Pannel.add(login);
-        login_tool_Pannel.add(tools);
+        login_tool_Pannel.add(tools);    
         
         setLayout(new BorderLayout());
         add(login_tool_Pannel, BorderLayout.NORTH);
@@ -47,6 +48,15 @@ public class View extends JFrame{
         
         pack();
         setVisible(true);
+    }
+    
+    public void showTableModel(TableModel tableModle){
+        JTable table = new JTable(tableModle);
+        main_Pannel.removeAll();
+        main_Pannel.add(table);
+        
+        pack();
+        repaint();
     }
 
 }

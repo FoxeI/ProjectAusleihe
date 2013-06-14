@@ -3,6 +3,11 @@ package ausleihe.controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.TabExpander;
+
 import ausleihe.db.DataBase;
 import ausleihe.view.View;
 
@@ -28,7 +33,7 @@ public class Controller {
         }
     }
     
-    public String[][] getTable(String name){
+    public void loadTable(String name){
         try {
             ResultSet result = database.executeQuery("SELECT * FROM " + name);
             
@@ -37,15 +42,23 @@ public class Controller {
             for(int i = 1; i <= colum_count; ++i){
                 labels[i-1] = result.getMetaData().getColumnLabel(i);
             }
+            
+            TableModel tableModle = new DefaultTableModel(10,colum_count);
+            
+            int y = 0;
+            while(result.next()){
+                for(int i = 0; i < colum_count; i++){
+                    tableModle.setValueAt(result.getString(labels[i]), y, i);
+                    
+                }
+                ++y;
+            }
+            
+            view.showTableModel(tableModle);
+            
         } catch (SQLException e) {
             System.err.println("error");
             e.printStackTrace();
-            return null;
         }
-        
-        
-        String[][] table = new String[10][10];
-        
-        return table;
     }
 }
