@@ -35,10 +35,11 @@ public class Controller {
             int colum_count = result.getMetaData().getColumnCount();
             String[] labels = new String[colum_count];
             for(int i = 1; i <= colum_count; ++i){
-                labels[i] = result.getMetaData().getColumnLabel(i);
+                labels[i-1] = result.getMetaData().getColumnLabel(i);
             }
         } catch (SQLException e) {
             System.err.println("error");
+            e.printStackTrace();
             return null;
         }
         

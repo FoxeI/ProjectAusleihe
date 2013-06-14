@@ -24,8 +24,8 @@ public class Login extends JPanel{
         this.controller = controller;
         
         
-        ta_user = new JTextArea("Username");
-        ta_pasw = new JTextArea("Password");
+        ta_user = new JTextArea("Foxel");
+        ta_pasw = new JTextArea("123");
         
         ta_user.setPreferredSize(new Dimension(80, 20));
         ta_pasw.setPreferredSize(new Dimension(80, 20));
