@@ -2,15 +2,18 @@ package ausleihe.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableColumnModelListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -50,10 +53,22 @@ public class View extends JFrame{
         setVisible(true);
     }
     
-    public void showTableModel(TableModel tableModle){
+    public void showTableModel(final TableModel tableModle){
         JTable table = new JTable(tableModle);
+        
+        tableModle.addTableModelListener(new TableModelListener() {
+            
+            @Override
+            public void tableChanged(TableModelEvent arg0) {
+                
+                System.out.println(tableModle.getValueAt(arg0.getFirstRow(), arg0.getColumn()));
+                
+            }
+        });
+        
+        
         main_Pannel.removeAll();
-        main_Pannel.add(table);
+        main_Pannel.add(new JScrollPane(table));
         
         pack();
         repaint();

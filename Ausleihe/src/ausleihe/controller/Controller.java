@@ -43,7 +43,8 @@ public class Controller {
                 labels[i-1] = result.getMetaData().getColumnLabel(i);
             }
             
-            TableModel tableModle = new DefaultTableModel(10,colum_count);
+            TableModel tableModle = new DefaultTableModel(labels, 10);
+            
             
             int y = 0;
             while(result.next()){
