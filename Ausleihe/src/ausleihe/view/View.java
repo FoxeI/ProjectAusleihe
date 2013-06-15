@@ -1,6 +1,7 @@
 package ausleihe.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import ausleihe.controller.Controller;
+import ausleihe.view.panel.CreatePanel;
 import ausleihe.view.panel.Login;
 import ausleihe.view.panel.ToolBar;
 
@@ -34,6 +36,7 @@ public class View extends JFrame{
     
     Login login;
     ToolBar tools;
+    CreatePanel createPanel;
     
     private String currentTableName;
     
@@ -75,12 +78,23 @@ public class View extends JFrame{
             }
         });
         
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(600,600));
         
+        main_Pannel.setLayout(new BorderLayout());
         main_Pannel.removeAll();
-        main_Pannel.add(new JScrollPane(table));
+        main_Pannel.add(scroll, BorderLayout.CENTER);
+        
+        main_Pannel.setPreferredSize(new Dimension(800,600));
+        
+        showCreatePanel(tableModle);
         
         pack();
         repaint();
+    }
+    
+    public void showCreatePanel(TableModel tableModle){
+        main_Pannel.add(new CreatePanel(controller, tableModle), BorderLayout.EAST);
     }
     
     public void setConnected(String username){
