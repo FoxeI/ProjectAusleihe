@@ -23,7 +23,7 @@ public class CreatePanel extends JPanel{
     private JPanel values_panel;
     private JPanel button_panel;
     
-    public CreatePanel(Controller controller, TableModel tableModle){
+    public CreatePanel(final Controller controller, TableModel tableModle){
         super();
         this.controller = controller;
         
@@ -45,8 +45,8 @@ public class CreatePanel extends JPanel{
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                String s1 = "'";
-                String s2 = "'";
+                String s1 = "(";
+                String s2 = "('";
                 
                 JLabel label = null;
                 JTextArea area = null;
@@ -59,15 +59,15 @@ public class CreatePanel extends JPanel{
                     s2 += area.getText();
                     
                     if(i < values_panel.getComponentCount()-2){
-                        s1 += "','";
+                        s1 += ",";
                         s2 += "','";
                     } else {
-                        s1 += "'";
-                        s2 += "'";
+                        s1 += ")";
+                        s2 += "')";
                     }
                 }
                 
-                System.out.println(s2);
+                controller.createTupel(s1, s2);
             }
         });
         

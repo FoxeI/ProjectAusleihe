@@ -35,8 +35,8 @@ public class Controller {
         loadTable(view.getCurrentTableName());
     }
     
-    public void insertValue(String string1, String string2){
-			database.execute("INSERT INTO" + string1 + " VALUES " + string2);
+    public void createTupel(String string1, String string2){
+			database.execute("INSERT INTO " + view.getCurrentTableName() + string1 + " VALUES " + string2 + ";");
     		loadTable(view.getCurrentTableName());
     }
     
