@@ -1,5 +1,6 @@
 package ausleihe.controller;
 
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -34,16 +35,21 @@ public class Controller {
         loadTable(view.getCurrentTableName());
     }
     
+    public void insertValue(String string1, String string2){
+			database.execute("INSERT INTO" + string1 + " VALUES " + string2);
+    		loadTable(view.getCurrentTableName());
+    }
+    
     public void loadTable(String name){
         try {
             ResultSet result = database.executeQuery("SELECT * FROM " + name);
+            
             
             int colum_count = result.getMetaData().getColumnCount();
             String[] labels = new String[colum_count];
             for(int i = 1; i <= colum_count; ++i){
                 labels[i-1] = result.getMetaData().getColumnLabel(i);
             }
-            
             
             TableModel tableModle = new DefaultTableModel(labels, 100);
             
