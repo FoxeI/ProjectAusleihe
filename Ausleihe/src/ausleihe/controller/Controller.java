@@ -31,6 +31,7 @@ public class Controller {
     
     public void updateValue(String primary_name, String column_name, String key ,String value){
         database.execute("UPDATE " + view.getCurrentTableName() + " SET " + column_name + " = \'" + value + "\' WHERE " + primary_name + " = " + key);
+        loadTable(view.getCurrentTableName());
     }
     
     public void loadTable(String name){
