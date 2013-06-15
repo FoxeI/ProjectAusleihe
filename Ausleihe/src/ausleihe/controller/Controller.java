@@ -39,7 +39,8 @@ public class Controller {
                 labels[i-1] = result.getMetaData().getColumnLabel(i);
             }
             
-            TableModel tableModle = new DefaultTableModel(labels, 10);
+            
+            TableModel tableModle = new DefaultTableModel(labels, 100);
             
             
             int y = 0;
