@@ -53,7 +53,6 @@ public class Controller {
             
             TableModel tableModle = new DefaultTableModel(labels, 100);
             
-            
             int y = 0;
             while(result.next()){
                 for(int i = 0; i < colum_count; i++){

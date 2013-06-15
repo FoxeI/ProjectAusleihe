@@ -24,7 +24,6 @@ public class Login extends JPanel{
         super();
         this.controller = controller;
         
-        
         ta_user = new JTextArea("Foxel");
         ta_pasw = new JTextArea("123");
         
@@ -43,8 +42,7 @@ public class Login extends JPanel{
         add(ta_user);
         add(ta_pasw);
         add(b_login);
-        
-        
+
     }
     
     public void setConnected(String name){
