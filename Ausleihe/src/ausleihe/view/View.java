@@ -84,7 +84,6 @@ public class View extends JFrame{
         main_Pannel.setLayout(new BorderLayout());
         main_Pannel.removeAll();
         main_Pannel.add(scroll, BorderLayout.CENTER);
-        
         main_Pannel.setPreferredSize(new Dimension(800,600));
         
         showCreatePanel(tableModle);

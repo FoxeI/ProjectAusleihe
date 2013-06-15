@@ -45,14 +45,35 @@ public class CreatePanel extends JPanel{
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+                String s1 = "'";
+                String s2 = "'";
                 
+                JLabel label = null;
+                JTextArea area = null;
+                
+                for(int i = 0; i < values_panel.getComponentCount(); i += 2){
+                    label = (JLabel) values_panel.getComponent( i );
+                    area = (JTextArea) values_panel.getComponent(i+1);
+                    
+                    s1 += label.getText();
+                    s2 += area.getText();
+                    
+                    if(i < values_panel.getComponentCount()-2){
+                        s1 += "','";
+                        s2 += "','";
+                    } else {
+                        s1 += "'";
+                        s2 += "'";
+                    }
+                }
+                
+                System.out.println(s2);
             }
         });
         
         
         values_panel.setLayout(new GridLayout(9, 2,2,2));
-        button_panel.add(new JButton("CREATE"));
+        button_panel.add(create_button);
         button_panel.setPreferredSize(new Dimension(200, 400));
         
         
