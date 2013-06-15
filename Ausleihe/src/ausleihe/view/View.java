@@ -30,6 +30,7 @@ public class View extends JFrame{
     private Controller controller;
     private JPanel login_tool_Pannel;
     private JPanel main_Pannel;
+    private String currentTableName;
     
     public View(Controller controller){ 
         super();
@@ -60,9 +61,12 @@ public class View extends JFrame{
             
             @Override
             public void tableChanged(TableModelEvent arg0) {
+                String primary_name = tableModle.getColumnName(0);
+                String column_name = tableModle.getColumnName(arg0.getColumn());
+                String value = (String) tableModle.getValueAt(arg0.getFirstRow(), arg0.getColumn());
+                String key = (String) tableModle.getValueAt(arg0.getFirstRow(), 0);
                 
-                System.out.println(tableModle.getValueAt(arg0.getFirstRow(), arg0.getColumn()));
-                
+                controller.updateValue(primary_name, column_name, key, value);
             }
         });
         
@@ -72,6 +76,14 @@ public class View extends JFrame{
         
         pack();
         repaint();
+    }
+    
+    public void setCurrentTableName(String currentTableName){
+        this.currentTableName = currentTableName;
+    }
+    
+    public String getCurrentTableName(){
+        return currentTableName;
     }
 
 }

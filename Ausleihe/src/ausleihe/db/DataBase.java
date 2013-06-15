@@ -65,8 +65,24 @@ public class DataBase {
         }
     }
     
+    public boolean execute(String string){
+        System.out.println(string);
+        try {
+            return statement.execute(string);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public ResultSet executeQuery(String query) throws SQLException{
-        return statement.executeQuery(query);
+        System.out.println(query);
+        result = statement.executeQuery(query);
+        return result;
+    }
+    
+    public ResultSet getResult() {
+        return result;
     }
     
 }

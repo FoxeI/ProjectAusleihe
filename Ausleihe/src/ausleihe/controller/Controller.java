@@ -24,13 +24,9 @@ public class Controller {
         return database.connect(username, password);
     }
     
-    public void executeQuery(String query){
-        try {
-            database.executeQuery(query);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    
+    public void updateValue(String primary_name, String column_name, String key ,String value){
+        database.execute("UPDATE " + view.getCurrentTableName() + " SET " + column_name + " = \'" + value + "\' WHERE " + primary_name + " = " + key);
     }
     
     public void loadTable(String name){
@@ -55,6 +51,7 @@ public class Controller {
                 ++y;
             }
             
+            view.setCurrentTableName(name);
             view.showTableModel(tableModle);
             
         } catch (SQLException e) {
