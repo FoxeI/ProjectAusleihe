@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -35,11 +36,7 @@ public class Login extends JPanel{
             
             @Override
             public void actionPerformed(ActionEvent arg0) { 
-                if(controller.connect(ta_user.getText(), ta_pasw.getText())){
-                    // connected
-                } else {
-                    // connection failed
-                }
+                controller.connect(ta_user.getText(), ta_pasw.getText());
             }
         });
         
@@ -48,6 +45,11 @@ public class Login extends JPanel{
         add(b_login);
         
         
+    }
+    
+    public void setConnected(String name){
+        removeAll();
+        add(new JLabel("Connected as " + name));
     }
 
     public String getUsername(){

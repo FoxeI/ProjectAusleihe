@@ -13,20 +13,25 @@ public class ToolBar extends JPanel{
 
     private Controller controller;
     
-    public ToolBar(final Controller controler){
+    public ToolBar(Controller controler){
         super();
         this.controller = controler;
+       
+    }
+    
+    public void loadTools(String username){
+        final Controller tmp = this.controller;
         
         ActionListener al = new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                controler.loadTable(e.getActionCommand());
+                tmp.loadTable(e.getActionCommand());
             }
         };
         
+        // TODO: select buttons for specific user permissions
         
-
         JButton computer = new JButton("COMPUTER");
         JButton lizenz = new JButton("LIZENZ");
         JButton ausleihe = new JButton("AUSLEIHE");

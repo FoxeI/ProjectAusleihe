@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Enumeration;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,6 +31,10 @@ public class View extends JFrame{
     private Controller controller;
     private JPanel login_tool_Pannel;
     private JPanel main_Pannel;
+    
+    Login login;
+    ToolBar tools;
+    
     private String currentTableName;
     
     public View(Controller controller){ 
@@ -38,8 +43,8 @@ public class View extends JFrame{
         this.login_tool_Pannel = new JPanel();
         this.main_Pannel = new JPanel();
         
-        Login login = new Login(controller);
-        ToolBar tools = new ToolBar(controller);
+        login = new Login(controller);
+        tools = new ToolBar(controller);
         
         login_tool_Pannel.setLayout(new FlowLayout());
         
@@ -74,6 +79,18 @@ public class View extends JFrame{
         main_Pannel.removeAll();
         main_Pannel.add(new JScrollPane(table));
         
+        pack();
+        repaint();
+    }
+    
+    public void setConnected(String username){
+        login.setConnected(username);
+        tools.loadTools(username);
+        pack();
+        repaint();
+    }
+    public void setConnectionFailed(){
+        login.add(new JLabel("Connection Failed ..."), BorderLayout.SOUTH);
         pack();
         repaint();
     }

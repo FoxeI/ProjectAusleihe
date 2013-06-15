@@ -20,8 +20,12 @@ public class Controller {
         view = new View(this);
     }
     
-    public boolean connect(String username, String password){
-        return database.connect(username, password);
+    public void connect(String username, String password){
+        if(database.connect(username, password)){
+            view.setConnected(username);
+        } else {
+            view.setConnectionFailed();
+        }
     }
     
     
