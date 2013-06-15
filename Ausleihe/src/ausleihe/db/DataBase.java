@@ -75,6 +75,10 @@ public class DataBase {
         }
     }
     
+    public void getReadAccess() {
+    	
+    }
+    
     public ResultSet executeQuery(String query) throws SQLException{
         System.out.println(query);
         result = statement.executeQuery(query);
