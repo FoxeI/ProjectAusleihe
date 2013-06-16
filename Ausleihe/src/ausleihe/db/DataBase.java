@@ -55,7 +55,7 @@ public class DataBase {
         }
         
         // Testing call of the permission 
-        controller.accessRead("Leser");
+        controller.accessRead(controller.getLoggedUser());
         getAccessInf();
         return true;
     }

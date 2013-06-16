@@ -24,6 +24,8 @@ public class Login extends JPanel{
         super();
         this.controller = controller;
         
+        
+        
         taUser = new JTextArea("Foxel");
         taPasw = new JTextArea("123");
         
@@ -35,6 +37,7 @@ public class Login extends JPanel{
             
             @Override
             public void actionPerformed(ActionEvent arg0) { 
+            	controller.setLoggedUser(taUser.getText());
                 controller.connect(taUser.getText(), taPasw.getText());
             }
         });

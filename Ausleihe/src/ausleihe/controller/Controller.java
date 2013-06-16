@@ -15,6 +15,7 @@ import ausleihe.view.View;
 public class Controller {
     DataBase database;
     View view;
+    String loggedUser;
     
     public Controller(){
         database = new DataBase(this);
@@ -106,4 +107,13 @@ public class Controller {
             e.printStackTrace();
         }
     }
+    
+    public String getLoggedUser() {
+		return loggedUser;
+	}
+    
+    public void setLoggedUser(String s) {
+    	loggedUser = s;
+    }
+  
 }
