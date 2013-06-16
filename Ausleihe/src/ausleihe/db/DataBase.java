@@ -134,15 +134,27 @@ public class DataBase {
     
     public void  addReadList(String s) {
     	readList.add(s);
+    	if(s.equals("Computer")){
+    		readList.add("CPU"); readList.add("GPU"); readList.add("RAM");
+    		readList.add("HDD"); readList.add("Mainboard");
+    	}
     }
     
     public void  addWriteList(String s) {
     	addReadList(s);
+    	if(s.equals("Computer")){
+    		writeList.add("CPU"); writeList.add("GPU"); writeList.add("RAM");
+    		writeList.add("HDD"); writeList.add("Mainboard");
+    	}
     	writeList.add(s);
     }
     
     public void  addDeleteList(String s) {
     	addWriteList(s);
+    	if(s.equals("Computer")){
+    		deleteList.add("CPU"); deleteList.add("GPU"); deleteList.add("RAM");
+    		deleteList.add("HDD"); deleteList.add("Mainboard");
+    	}
     	deleteList.add(s);
     }
     
