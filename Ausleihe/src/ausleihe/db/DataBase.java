@@ -137,6 +137,10 @@ public class DataBase {
     	if(s.equals("Computer")){
     		readList.add("CPU"); readList.add("GPU"); readList.add("RAM");
     		readList.add("HDD"); readList.add("Mainboard");
+    	} else if(s.equals("Lizenz")) {
+    		readList.add("Lizenzierung");
+    	} else if(s.equals("Mitarbeiter")) {
+    		readList.add("Tätigkeit"); readList.add("GehaltsKlasse");
     	}
     }
     
@@ -145,6 +149,10 @@ public class DataBase {
     	if(s.equals("Computer")){
     		writeList.add("CPU"); writeList.add("GPU"); writeList.add("RAM");
     		writeList.add("HDD"); writeList.add("Mainboard");
+    	} else if(s.equals("Lizenz")) {
+    		writeList.add("Lizenzierung");
+    	} else if(s.equals("Mitarbeiter")) {
+    		writeList.add("Tätigkeit"); writeList.add("GehaltsKlasse");
     	}
     	writeList.add(s);
     }
@@ -154,6 +162,10 @@ public class DataBase {
     	if(s.equals("Computer")){
     		deleteList.add("CPU"); deleteList.add("GPU"); deleteList.add("RAM");
     		deleteList.add("HDD"); deleteList.add("Mainboard");
+    	} else if(s.equals("Lizenz")) {
+    		deleteList.add("Lizenzierung");
+    	} else if(s.equals("Mitarbeiter")) {
+    		deleteList.add("Tätigkeit"); deleteList.add("GehaltsKlasse");
     	}
     	deleteList.add(s);
     }
