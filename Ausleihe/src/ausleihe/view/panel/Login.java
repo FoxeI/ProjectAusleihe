@@ -16,32 +16,32 @@ public class Login extends JPanel{
     private static final long serialVersionUID = 1L;
     private Controller controller;
     
-    private JTextArea ta_user;
-    private JTextArea ta_pasw;
-    private JButton b_login;
+    private JTextArea taUser;
+    private JTextArea taPasw;
+    private JButton bLogin;
     
     public Login(final Controller controller){
         super();
         this.controller = controller;
         
-        ta_user = new JTextArea("Foxel");
-        ta_pasw = new JTextArea("123");
+        taUser = new JTextArea("Foxel");
+        taPasw = new JTextArea("123");
         
-        ta_user.setPreferredSize(new Dimension(80, 20));
-        ta_pasw.setPreferredSize(new Dimension(80, 20));
+        taUser.setPreferredSize(new Dimension(80, 20));
+        taPasw.setPreferredSize(new Dimension(80, 20));
         
-        b_login = new JButton("login");
-        b_login.addActionListener(new ActionListener() {
+        bLogin = new JButton("login");
+        bLogin.addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent arg0) { 
-                controller.connect(ta_user.getText(), ta_pasw.getText());
+                controller.connect(taUser.getText(), taPasw.getText());
             }
         });
         
-        add(ta_user);
-        add(ta_pasw);
-        add(b_login);
+        add(taUser);
+        add(taPasw);
+        add(bLogin);
 
     }
     
@@ -51,14 +51,14 @@ public class Login extends JPanel{
     }
 
     public String getUsername(){
-        return ta_user.getText();
+        return taUser.getText();
     }
     
     public String getPassword(){
-        return ta_pasw.getText();
+        return taPasw.getText();
     }
     
     public JButton getLoginButton(){
-        return b_login;
+        return bLogin;
     }
 }
