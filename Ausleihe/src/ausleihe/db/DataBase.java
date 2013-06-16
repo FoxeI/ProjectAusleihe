@@ -1,10 +1,12 @@
 package ausleihe.db;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import ausleihe.controller.Controller;
 
@@ -48,6 +50,7 @@ public class DataBase {
             System.out.println("Statement creation failed!");
             return false;
         }
+        getReadAccess();
         return true;
     }
     
@@ -75,8 +78,39 @@ public class DataBase {
         }
     }
     
-    public void getReadAccess() {
-    	
+    public ArrayList<String> getReadAccess()  {
+		DatabaseMetaData dbmd;
+		
+		try {
+			dbmd = connection.getMetaData();
+         ResultSet rs = dbmd.getTablePrivileges(connection.getCatalog(), "Leser", "Computer");
+      
+         while (rs.next()) {
+             String catalog = rs.getString("TABLE_CAT");
+             String schema = rs.getString("TABLE_SCHEM");
+             String tableName = rs.getString("TABLE_NAME");
+             String privilege = rs.getString("PRIVILEGE");
+             String grantor = rs.getString("GRANTOR");
+             String grantee = rs.getString("GRANTEE");
+             String isGrantable = rs.getString("IS_GRANTABLE");
+
+             System.out.println("table name:" + tableName);
+             System.out.println("catalog:"+catalog);
+             System.out.println("schema:"+ schema);
+             System.out.println("privilege:"+privilege);
+             System.out.println("grantor:"+grantor);
+             System.out.println("isGrantable:"+isGrantable);
+             System.out.println("grantee:"+grantee);
+             System.out.println("Ich war mal hier :D");
+           }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Fehler");
+			e.printStackTrace();
+		}
+		System.out.println("Ich war mal hier :D");
+
+    	return null;
     }
     
     public ResultSet executeQuery(String query) throws SQLException{

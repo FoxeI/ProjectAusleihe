@@ -50,4 +50,8 @@ public class ToolBar extends JPanel{
         add(mitarbeiter);
         add(kunde);
     }
+    
+   public void addData() {
+	   
+   }
 }
