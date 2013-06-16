@@ -66,19 +66,24 @@ public class View extends JFrame{
     public void showTableModel(final TableModel tableModle){
         table = new JTable(tableModle);
         
-        tableModle.addTableModelListener(new TableModelListener() {
+        for (int i = 0; i < controller.getDatabase().getWriteList().size(); i++) {
+			if(controller.getDatabase().getWriteList().get(i).equals(getCurrentTableName())) {
+				tableModle.addTableModelListener(new TableModelListener() {
             
-            @Override
-            public void tableChanged(TableModelEvent arg0) {
-                String primary_name = tableModle.getColumnName(0);
-                String column_name = tableModle.getColumnName(arg0.getColumn());
-                String value = (String) tableModle.getValueAt(arg0.getFirstRow(), arg0.getColumn());
-                String key = (String) tableModle.getValueAt(arg0.getFirstRow(), 0);
-                
-                controller.updateValue(primary_name, column_name, key, value);
-            }
-        });
-        
+		            @Override
+		            public void tableChanged(TableModelEvent arg0) {
+		                String primary_name = tableModle.getColumnName(0);
+		                String column_name = tableModle.getColumnName(arg0.getColumn());
+		                String value = (String) tableModle.getValueAt(arg0.getFirstRow(), arg0.getColumn());
+		                String key = (String) tableModle.getValueAt(arg0.getFirstRow(), 0);
+		                
+		                controller.updateValue(primary_name, column_name, key, value);
+		            }
+				});
+			}
+		}
+				
+				
         //table.gets
         
         JScrollPane scroll = new JScrollPane(table);
