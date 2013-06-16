@@ -15,6 +15,7 @@ import ausleihe.view.View;
 public class Controller {
     DataBase database;
     View view;
+    String loggedUser;
     
     public Controller(){
         database = new DataBase(this);
@@ -40,6 +41,42 @@ public class Controller {
     public void createTupel(String string1, String string2){
 			database.execute("INSERT INTO " + view.getCurrentTableName() + string1 + " VALUES " + string2 + ";");
     		loadTable(view.getCurrentTableName());
+    }
+    
+    /**
+     * Get the Access Permission of the Table and store it in ArrayList's in Database.java
+     * @param userName The Logged User
+     */
+    public void accessRead(String userName) {
+    	try {
+			ResultSet result = database.executeQuery("SELECT * FROM permission WHERE Name=\'"+ userName +"\';");
+                    
+            int colum_count = result.getMetaData().getColumnCount();
+            String[] labels = new String[colum_count];
+            
+            for(int i = 1; i <= colum_count; ++i){
+                labels[i-1] = result.getMetaData().getColumnLabel(i);
+            }
+            
+            while(result.next()){
+                for(int i = 0; i < colum_count; i++){
+                   //System.out.println(result.getString(labels[i])); 
+                   if(result.getString(labels[i]).equals("d")) {
+                	   //System.out.println(result.getMetaData().getColumnLabel(i));
+                	   database.addDeleteList(result.getMetaData().getColumnLabel(i));
+                   }
+                   if(result.getString(labels[i]).equals("w")) {
+                	   database.addWriteList(result.getMetaData().getColumnLabel(i));
+                   }
+                   if(result.getString(labels[i]).equals("r")) {
+                	   database.addReadList(result.getMetaData().getColumnLabel(i));
+                   }
+                }
+			  }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void deleteTupel(){
@@ -76,4 +113,13 @@ public class Controller {
             e.printStackTrace();
         }
     }
+    
+    public String getLoggedUser() {
+		return loggedUser;
+	}
+    
+    public void setLoggedUser(String s) {
+    	loggedUser = s;
+    }
+  
 }
