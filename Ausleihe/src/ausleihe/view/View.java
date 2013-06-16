@@ -37,6 +37,7 @@ public class View extends JFrame{
     Login login;
     ToolBar tools;
     CreatePanel createPanel;
+    JTable table;
     
     private String currentTableName;
     
@@ -63,7 +64,7 @@ public class View extends JFrame{
     }
     
     public void showTableModel(final TableModel tableModle){
-        JTable table = new JTable(tableModle);
+        table = new JTable(tableModle);
         
         tableModle.addTableModelListener(new TableModelListener() {
             
@@ -94,8 +95,22 @@ public class View extends JFrame{
         repaint();
     }
     
+    public void deleteSelectedTupels(){
+        int start = table.getSelectedRow();
+        int end = start + table.getSelectedRowCount();
+        
+        while(start < end){
+            controller.deleteTupel(table.getColumnName(0), (String) table.getValueAt(start, 0));
+            ++start;
+        }
+        
+        controller.loadTable(currentTableName);
+        pack();
+        repaint();
+    }
+    
     public void showCreatePanel(TableModel tableModle){
-        main_Pannel.add(new CreatePanel(controller, tableModle), BorderLayout.EAST);
+        main_Pannel.add(new CreatePanel(controller,this, tableModle), BorderLayout.EAST);
     }
     
     public void setConnected(String username){

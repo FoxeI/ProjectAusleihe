@@ -14,18 +14,21 @@ import javax.swing.JTextArea;
 import javax.swing.table.TableModel;
 
 import ausleihe.controller.Controller;
+import ausleihe.view.View;
 
 public class CreatePanel extends JPanel{
     
     private static final long serialVersionUID = 1L;
     private Controller controller;
+    private View view;
     
     private JPanel values_panel;
     private JPanel button_panel;
     
-    public CreatePanel(final Controller controller, TableModel tableModle){
+    public CreatePanel(final Controller controller, final View view, TableModel tableModle){
         super();
         this.controller = controller;
+        this.view = view;
         
         
         values_panel = new JPanel();
@@ -76,14 +79,14 @@ public class CreatePanel extends JPanel{
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
-                //controller."DELETE FROM "
+                view.deleteSelectedTupels();
             }
         });
         
         
         values_panel.setLayout(new GridLayout(9, 2,2,2));
         button_panel.add(create_button);
+        button_panel.add(delete_button);
         button_panel.setPreferredSize(new Dimension(200, 400));
         
         

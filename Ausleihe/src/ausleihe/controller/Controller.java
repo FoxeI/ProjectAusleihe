@@ -43,6 +43,11 @@ public class Controller {
     		loadTable(view.getCurrentTableName());
     }
     
+    public void deleteTupel(String primary_name, String key){
+        database.execute("DELETE FROM " + view.getCurrentTableName() + " WHERE " + primary_name + " = " + key);
+    }
+    
+    
     /**
      * Get the Access Permission of the Table and store it in ArrayList's in Database.java
      * @param userName The Logged User
@@ -77,10 +82,6 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
-    
-    public void deleteTupel(){
-        
     }
     
     public void loadTable(String name){
