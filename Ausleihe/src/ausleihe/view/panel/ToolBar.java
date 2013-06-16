@@ -2,6 +2,7 @@ package ausleihe.view.panel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ public class ToolBar extends JPanel{
     private static final long serialVersionUID = 1L;
 
     private Controller controller;
+    private ArrayList<JButton> btn = new ArrayList<JButton>();
     
     public ToolBar(Controller controler){
         super();
@@ -30,25 +32,12 @@ public class ToolBar extends JPanel{
             }
         };
         
-        // TODO: select buttons for specific user permissions
+        for (int i = 0; i < controller.getDatabase().getReadList().size(); i++) {
+			btn.add(new JButton(controller.getDatabase().getReadList().get(i)));
+			btn.get(i).addActionListener(al);
+			add(btn.get(i));
+		}
         
-        JButton computer = new JButton("COMPUTER");
-        JButton lizenz = new JButton("LIZENZ");
-        JButton ausleihe = new JButton("AUSLEIHE");
-        JButton mitarbeiter = new JButton("MITARBEITER");
-        JButton kunde = new JButton("KUNDE");
-        
-        computer.addActionListener(al);
-        lizenz.addActionListener(al);
-        ausleihe.addActionListener(al);
-        mitarbeiter.addActionListener(al);
-        kunde.addActionListener(al);
-
-        add(computer);
-        add(lizenz);
-        add(ausleihe);
-        add(mitarbeiter);
-        add(kunde);
     }
     
 }

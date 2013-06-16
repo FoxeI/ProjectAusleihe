@@ -89,7 +89,11 @@ public class View extends JFrame{
         main_Pannel.add(scroll, BorderLayout.CENTER);
         main_Pannel.setPreferredSize(new Dimension(800,600));
         
-        showCreatePanel(tableModle);
+        for (int i = 0; i < controller.getDatabase().getWriteList().size(); i++) {
+			if(controller.getDatabase().getWriteList().get(i).equals(getCurrentTableName())) {
+				 showCreatePanel(tableModle);
+			}
+		}
         
         pack();
         repaint();

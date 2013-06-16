@@ -64,17 +64,17 @@ public class Controller {
             }
             
             while(result.next()){
-                for(int i = 0; i < colum_count; i++){
+            	for(int i = 1; i < labels.length; i++){
                    //System.out.println(result.getString(labels[i])); 
                    if(result.getString(labels[i]).equals("d")) {
-                	   //System.out.println(result.getMetaData().getColumnLabel(i));
-                	   database.addDeleteList(result.getMetaData().getColumnLabel(i));
+                	   //System.out.println(result.getMetaData().getColumnLabel(i+1));
+                	   database.addDeleteList(result.getMetaData().getColumnLabel(i+1));
                    }
                    if(result.getString(labels[i]).equals("w")) {
-                	   database.addWriteList(result.getMetaData().getColumnLabel(i));
+                	   database.addWriteList(result.getMetaData().getColumnLabel(i+1));
                    }
                    if(result.getString(labels[i]).equals("r")) {
-                	   database.addReadList(result.getMetaData().getColumnLabel(i));
+                	   database.addReadList(result.getMetaData().getColumnLabel(i+1));
                    }
                 }
 			  }
@@ -83,7 +83,6 @@ public class Controller {
 			e.printStackTrace();
 		}
     }
-    
     public void loadTable(String name){
         try {
             ResultSet result = database.executeQuery("SELECT * FROM " + name);
@@ -123,4 +122,7 @@ public class Controller {
     	loggedUser = s;
     }
   
+    public DataBase getDatabase() {
+    	return database;
+    }
 }
