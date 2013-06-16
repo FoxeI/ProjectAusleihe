@@ -17,6 +17,9 @@ public class DataBase {
     private Statement statement;
     private ResultSet result;
     
+    private ArrayList<String> readList = new ArrayList<String>();
+    private ArrayList<String> writeList = new ArrayList<String>();
+    private ArrayList<String> deleteList = new ArrayList<String>();
     
     public DataBase(Controller controller){
         this.controller = controller;
@@ -50,7 +53,10 @@ public class DataBase {
             System.out.println("Statement creation failed!");
             return false;
         }
-        getReadAccess();
+        
+        // Testing call of the permission 
+        controller.accessRead("Leser");
+        getAccessInf();
         return true;
     }
     
@@ -77,6 +83,7 @@ public class DataBase {
             return false;
         }
     }
+    
     
     public ArrayList<String> getReadAccess()  {
 		DatabaseMetaData dbmd;
@@ -113,6 +120,8 @@ public class DataBase {
     	return null;
     }
     
+
+    
     public ResultSet executeQuery(String query) throws SQLException{
         System.out.println(query);
         result = statement.executeQuery(query);
@@ -123,4 +132,50 @@ public class DataBase {
         return result;
     }
     
+    public void  addReadList(String s) {
+    	readList.add(s);
+    }
+    
+    public void  addWriteList(String s) {
+    	addReadList(s);
+    	writeList.add(s);
+    }
+    
+    public void  addDeleteList(String s) {
+    	addWriteList(s);
+    	deleteList.add(s);
+    }
+    
+    public ArrayList<String> getReadList() {
+		return readList;
+    	
+    }
+    
+    public ArrayList<String> getWriteList() {
+		return writeList;
+    	
+    }
+    
+    public ArrayList<String> getDeleteList() {
+		return deleteList;
+    	
+    }
+    
+    public void getAccessInf() {
+    	System.out.print("Der Benutzer darf in den Rubriken Lesen:");
+    	for (int i = 0; i < readList.size(); i++) {
+			System.out.print(readList.get(i));
+			System.out.print(" & ");
+		}
+    	System.out.print("\nDer Benutzer darf in den Rubriken Schreiben:");
+    	for (int i = 0; i < writeList.size(); i++) {
+			System.out.print(writeList.get(i));
+			System.out.print(" & ");
+		}
+    	System.out.print("\nDer Benutzer darf in den Rubriken Löschen:");
+    	for (int i = 0; i < deleteList.size(); i++) {
+			System.out.print(deleteList.get(i));
+			System.out.print(" & ");
+		}
+    }
 }
