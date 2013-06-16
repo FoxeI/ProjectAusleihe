@@ -51,7 +51,4 @@ public class ToolBar extends JPanel{
         add(kunde);
     }
     
-   public void addData() {
-	   
-   }
 }
