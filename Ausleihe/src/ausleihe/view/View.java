@@ -78,6 +78,8 @@ public class View extends JFrame{
             }
         });
         
+        //table.gets
+        
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(600,600));
         

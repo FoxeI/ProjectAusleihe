@@ -71,6 +71,16 @@ public class CreatePanel extends JPanel{
             }
         });
         
+        JButton delete_button = new JButton("DELETE");
+        delete_button.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                //controller."DELETE FROM "
+            }
+        });
+        
         
         values_panel.setLayout(new GridLayout(9, 2,2,2));
         button_panel.add(create_button);

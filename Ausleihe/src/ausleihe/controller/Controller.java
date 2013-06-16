@@ -29,6 +29,8 @@ public class Controller {
         }
     }
     
+
+    
     
     public void updateValue(String primary_name, String column_name, String key ,String value){
         database.execute("UPDATE " + view.getCurrentTableName() + " SET " + column_name + " = \'" + value + "\' WHERE " + primary_name + " = " + key);
@@ -38,6 +40,10 @@ public class Controller {
     public void createTupel(String string1, String string2){
 			database.execute("INSERT INTO " + view.getCurrentTableName() + string1 + " VALUES " + string2 + ";");
     		loadTable(view.getCurrentTableName());
+    }
+    
+    public void deleteTupel(){
+        
     }
     
     public void loadTable(String name){
