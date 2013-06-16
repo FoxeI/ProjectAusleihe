@@ -96,12 +96,11 @@ public class View extends JFrame{
     }
     
     public void deleteSelectedTupels(){
-        int start = table.getSelectedRow();
-        int end = start + table.getSelectedRowCount();
         
-        while(start < end){
-            controller.deleteTupel(table.getColumnName(0), (String) table.getValueAt(start, 0));
-            ++start;
+        int[] rows = table.getSelectedRows();
+        
+        for(int i = 0; i < rows.length; i++){
+            controller.deleteTupel(table.getColumnName(0), (String) table.getValueAt(rows[i], 0));
         }
         
         controller.loadTable(currentTableName);
